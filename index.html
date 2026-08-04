@@ -11,7 +11,6 @@
 </head>
 <body>
 
-  <!-- SIDEBAR NAVIGATION -->
   <aside>
     <div class="sidebar-header">
       <span class="logo-icon"></span>
@@ -40,7 +39,7 @@
     <div class="nav-group">
       <div class="nav-label">Technická specifikace</div>
       <ul class="nav-list">
-        <li><a href="#technologie">Architektura</a></li>
+        <li><a href="#technologie">Architektura & Databáze</a></li>
         <li><a href="#struktura-souboru">Struktura projektu</a></li>
       </ul>
     </div>
@@ -52,7 +51,6 @@
       <p>Kompletní technická a uživatelská dokumentace k webové aplikaci pro žáky a učitele ZUŠ Moravský Krumlov.</p>
     </div>
 
-    <!-- SEKTOR 1: ÚVOD -->
     <section id="uvod">
       <h2>O aplikaci</h2>
       <p>
@@ -61,14 +59,13 @@
       </p>
 
       <div class="callout callout-info">
-        <span class="callout-icon"></span>
+        <span class="callout-icon">💡</span>
         <div>
-          <strong>Princip fungování:</strong> Žák nahraje svá cvičení přímo v prohlížeči, buduje si cvičební řadu, sbírá hvězdy za účast na koncertě (spravuje učitel) a dostává zpětnou vazbu přímo od učitele. Učitel má samostatné rozhraní pro správu výsledků a poslech nahrávek.
+          <strong>Princip fungování:</strong> Žák nahraje svá cvičení přímo v prohlížeči, buduje si cvičební řadu, sbírá hvězdy za účast na koncertě (spravuje učitel) a dostává zpětnou vazbu přímo od učitele. Učitel má samostatné rozhraní pro správu výsledků, schvalování registraci a poslech nahrávek.
         </div>
       </div>
     </section>
 
-    <!-- SEKTOR 2: ODZNÁČKY -->
     <section id="ukazatele">
       <h2>Odznáčky a ukazatele</h2>
       <p>V horním panelu rozhraní žáka se zobrazují metriky jeho cvičebního pokroku:</p>
@@ -97,122 +94,73 @@
             <p>Hvězdičky udělované učitelem za výkony na koncertech.</p>
           </div>
         </div>
+      </div>
     </section>
 
-    <!-- SEKTOR 3: PŘÍRUČKA PRO ŽÁKA -->
     <section id="prirucka-zak">
       <h2>Uživatelská příručka pro žáka</h2>
       
       <h3>1. Registrace a přihlášení</h3>
       <ul>
-        <li><strong>Registrace:</strong> Při prvním spuštění klikněte na <code>Chci se zaregistrovat</code>, vyplňte uživatelské jméno bez diakritiky (např. <code>jannovak</code>), celé jméno a heslo.</li>
+        <li><strong>Registrace:</strong> Při prvním spuštění klikněte na <code>Chci se zaregistrovat</code>, vyplňte uživatelské jméno bez diakritiky (např. <code>jannovak</code>), své celé jméno a heslo.</li>
+        <li><strong>Schválení účtu:</strong> Po registraci vyčkejte, než váš účet učitel schválí v administraci.</li>
         <li><strong>Přihlášení:</strong> Zadejte uživatelské jméno a heslo. Volba <code>Zapamatovat si mě</code> vás udrží přihlášené i po zavření prohlížeče.</li>
       </ul>
 
       <div class="callout callout-warning">
-        <span class="callout-icon"></span>
+        <span class="callout-icon">⚠️</span>
         <div>
-          <strong>Důležité:</strong> Uživatelské jméno <strong>nesmí</strong> obsahovat diakritiku ani mezery, slouží totiž k vygenerování interního e-mailu (<code>jannovak@keyboardhero.internal</code>).
+          <strong>Důležité:</strong> Uživatelské jméno <strong>nesmí</strong> obsahovat diakritiku ani mezery, slouží k vygenerování interního e-mailu (<code>jannovak@keyboardhero.internal</code>).
         </div>
       </div>
 
       <h3>2. Funkce v rozhraní žáka</h3>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Funkce</th>
-              <th>Popis a návod</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>🎙️ Nahrávání cvičení</strong></td>
-              <td>Stiskněte tlačítko s mikrofonem. Tlačítko červeně pulzuje. Po dokončení hraní opět stiskněte tlačítko – nahrávka se automaticky nahraje učiteli a tlačítko se rozsvítí zeleně.</td>
-            </tr>
-            <tr>
-              <td><strong>🎼 Měsíční kalendář</strong></td>
-              <td>Zobrazuje dny v daném měsíci. Dny, kdy bylo nahráno cvičení, jsou zvýrazněny oranžovo-červeným gradientem.</td>
-            </tr>
-            <tr>
-              <td><strong>💾 Nedávné nahrávky</strong></td>
-              <td>Přehled až 5 posledních nahrávek s možností přehrání nebo stažení do zařízení (tlačítkem 💾).</td>
-            </tr>
-            <tr>
-              <td><strong>💬 Komentáře učitele</strong></td>
-              <td>Zobrazuje zpětnou vazbu a poznámky, které vám učitel napsal k vašim nahrávkám.</td>
-            </tr>
-            <tr>
-              <td><strong>🏆 Žebříček (Top Žáci)</strong></td>
-              <td>Soutěžní tabulka nejlepších žáků seřazená podle denní řady (🔥) a počtu hvězd (⭐).</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout callout-warning">
-        <span class="callout-icon"></span>
-        <div>
-          <strong>Upozornění k nahrávkám:</strong> Starší audio soubory se z důvodu úspory místa průběžně mažou.<br> Pokud si chcete své cvičení uchovat, stáhněte si ho včas přes tlačítko 💾.
-        </div>
-      </div>
-    </section>
-
-    <!-- SEKTOR 4: PŘÍRUČKA PRO ADMINA -->
-    <section id="prirucka-admin">
-      <h2>Uživatelská příručka pro administrátora</h2>
-      <p>Administrátorský panel slouží učitelům k poslechům nahrávek, psaní hodnocení a správě statistik žáků.</p>
-
-      <h3>Možnosti administrátora</h3>
-      <ol>
-        <li><strong>Přihlášení:</strong> Přístup přes tlačítko <code>Admin Login</code> nebo soubor <code>admin.html</code>. Nutné účty s rolí <code>admin</code>.</li>
-        <li><strong>Správa bodů a odznáčků:</strong> V přehledné tabulce žáků lze tlačítky <code>+</code> a <code>-</code> okamžitě upravit hodnoty <strong>Streak</strong> a <strong>Stars</strong>. Změny se uloží tlačítkem <code>Uložit</code>.</li>
-        <li><strong>Poslech a komentování:</strong> Po kliknutí na tlačítko <code>Nahrávky</code> u daného žáka se otevře panel se všemi jeho zvukovými záznamy. Učitel si může skladbu přehrát a napsat k ní slovní komentář.</li>
-        <li><strong>Mazání nahrávek:</strong> Tlačítko 🗑️ <code>Smazat</code> trvale odstraní nahrávku jak z databáze, tak z úložiště Supabase Storage.</li>
-      </ol>
-    </section>
-
-    <!-- SEKTOR 5: TECHNICKÁ SPECIFIKACE -->
-    <section id="technologie">
-      <h2>Architektura</h2>
-      <p>Aplikace je postavena na moderních webových standardech bez nutnosti kompilace či těžkých JavaScriptových frameworků.</p>
-
-      <h3>Použité technologie</h3>
       <ul>
-        <li><strong>Frontend:</strong> HTML5, CSS3 (Flexbox/Grid), Vanillajs, Web Audio / MediaRecorder API.</li>
-        <li><strong>Backend & Databáze:</strong> Supabase (PostgreSQL, Authentication, Storage).</li>
-        <li><strong>Audio Formát:</strong> standardní <code>audio/wav</code> Blob streamovaný z mikrofonu zařízení.</li>
+        <li><strong>🎼 Kalendář:</strong> Přehledně zobrazuje aktuální měsíc. Dny, kdy žák odeslal cvičení, jsou barevně zvýrazněny.</li>
+        <li><strong>🎤 Nahrávání cvičení:</strong> Stisknutím tlačítka mikrofonu zahájíte nahrávání. Dalším stisknutím nahrávání ukončíte a nahrávka se automaticky odešle učiteli.</li>
+        <li><strong>💬 Hodnocení od učitele:</strong> V této sekci žák vidí zpětnou vazbu a komentáře, které učitel zanechal k jeho nahrávkám.</li>
+        <li><strong>🎧 Nedávné nahrávky:</strong> Seznam posledních nahrávek s možností jejich stažení. <em>Pozor: starší nahrávky se z úložiště průběžně promazávají!</em></li>
+        <li><strong>🏆 Žebříček:</strong> Přehled nejlepších žáků seřazený podle aktivity.</li>
+        <li><strong>🔔 Novinky:</strong> Důležitá upozornění a zprávy vložené učitelem.</li>
       </ul>
+    </section>
 
-      <h3>Databázové tabulky (Supabase Schema)</h3>
-      <pre><code>-- Profily uživatelů
-profiles (
-  id uuid PRIMARY KEY REFERENCES auth.users,
-  username text,
-  full_name text,
-  role text DEFAULT 'student',
-  streak integer DEFAULT 0,
-  stars integer DEFAULT 0
-);
+    <section id="prirucka-admin">
+      <h2>Uživatelská příručka pro učitele (Admin)</h2>
 
--- Záznamy o cvičení
-practice_logs (
-  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id uuid REFERENCES profiles(id),
-  audio_url text,
-  teacher_comment text,
-  created_at timestamp with time zone DEFAULT now()
-);</code></pre>
+      <h3>1. Přihlášení do administrace</h3>
+      <p>Do administrace se vstupuje přes odkaz <code>Admin Login</code> na přihlašovací stránce nebo přímo na souboru <code>admin.html</code>. Účet musí mít v databázi nastavenou roli <code>admin</code>.</p>
 
-      <h3>Interní autentizační logika</h3>
+      <h3>2. Schvalování žáků</h3>
+      <p>V sekci <strong>Čekající registrace</strong> se zobrazují nově zaregistrovaní žáci. Učitel může každou žádost schválit nebo zamítnout.</p>
+
+      <h3>3. Správa žáků a hodnocení</h3>
+      <ul>
+        <li><strong>Úprava hodnot (Streak a Koncerty):</strong> Učitel může tlačítky <code>+</code> / <code>-</code> upravit počet dní v denní řadě (🔥) nebo udělit hvězdičky za koncert (⭐) a změny uložit.</li>
+        <li><strong>Poslech a komentáře:</strong> Kliknutím na nahrávky žáka lze přehrát audio soubor, připsat k němu hodnocení/komentář nebo nepotřebnou nahrávku trvale smazat.</li>
+      </ul>
+    </section>
+
+    <section id="technologie">
+      <h2>Architektura & Databáze</h2>
+      <p>Aplikace je postavena na čisto klientském JS s využitím cloudové platformy <strong>Supabase</strong> pro backendové služby (Auth, Postgres DB a Storage).</p>
+
+      <h3>Generování vnitřních e-mailů</h3>
       <p>Jelikož děti v ZUŠ často nemají vlastní e-mailové adresy, aplikace automaticky převádí uživatelské jméno na vnitřní e-mailový tvar:</p>
       <pre><code>function makeInternalEmail(username) {
   const cleanUsername = username.trim().toLowerCase().replace(/\s+/g, '');
   return `${cleanUsername}@keyboardhero.internal`;
 }</code></pre>
+
+      <h3>Databázové tabulky v Supabase</h3>
+      <ul>
+        <li><code>profiles</code> – Profil uživatele (jméno, role, streak, stars, status schválení <code>is_approved</code>).</li>
+        <li><code>practice_logs</code> – Záznamy o odeslaných cvičeních a odkazy na audio nahrávky.</li>
+        <li><code>comments</code> – Slovní hodnocení učitele přiřazená k nahrávkám.</li>
+        <li><code>news</code> – Systémové novinky a oznámení pro žáky.</li>
+      </ul>
     </section>
 
-    <!-- SEKTOR 6: STRUKTURA SOUBORŮ -->
     <section id="struktura-souboru">
       <h2>Struktura projektu</h2>
       <div class="table-container">
@@ -230,11 +178,15 @@ practice_logs (
             </tr>
             <tr>
               <td><code>admin.html</code></td>
-              <td>Administrátorský panel pro učitele (hodnocení, bodování, poslech).</td>
+              <td>Administrátorský panel pro učitele (schvalování, hodnocení, bodování, poslech nahrávek).</td>
             </tr>
             <tr>
-              <td><code>README.md</code></td>
-              <td>Základní popis projektu a důležité pokyny pro konfiguraci.</td>
+              <td><code>style.css</code></td>
+              <td>Stylování uživatelského rozhraní a dokumentace.</td>
+            </tr>
+            <tr>
+              <td><code>script.js</code></td>
+              <td>Skript zajišťující plynulé rolování a zvýraznění aktivních sekcí v dokumentaci.</td>
             </tr>
           </tbody>
         </table>
