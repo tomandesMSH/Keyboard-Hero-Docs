@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard Hero Dokumentace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0f172a;
+      --bg-sidebar: #1e293b;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --border-color: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-primary: #38bdf8;
+      --accent-success: #22c55e;
+      --accent-warning: #eab308;
+      --accent-danger: #ef4444;
+      --accent-purple: #a855f7;
+      --sidebar-width: 280px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* --- SIDEBAR --- */
+    aside {
+      width: var(--sidebar-width);
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    .sidebar-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sidebar-header .logo-icon {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sidebar-header .title {
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .sidebar-header .badge {
+      font-size: 0.65rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-primary);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .nav-group {
+      padding: 20px 12px;
+    }
+
+    .nav-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      padding: 0 12px 8px 12px;
+    }
+
+    .nav-list {
+      list-style: none;
+    }
+
+    .nav-list li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-list li a:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+
+    .nav-list li a.active {
+      background-color: rgba(56, 189, 248, 0.15);
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    /* --- MAIN CONTENT --- */
+    main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      max-width: 1050px;
+      padding: 40px 60px;
+    }
+
+    .doc-header {
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .doc-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .doc-header p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    section {
+      margin-bottom: 48px;
+      scroll-margin-top: 30px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #38bdf8;
+      margin: 24px 0 12px 0;
+    }
+
+    p {
+      color: #cbd5e1;
+      margin-bottom: 16px;
+      font-size: 0.98rem;
+    }
+
+    /* --- CARDS & CALLOUTS --- */
+    .callout {
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      border: 1px solid transparent;
+      font-size: 0.93rem;
+    }
+
+    .callout-info {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.25);
+      color: #e0f2fe;
+    }
+
+    .callout-warning {
+      background: rgba(234, 179, 8, 0.08);
+      border-color: rgba(234, 179, 8, 0.25);
+      color: #fef08a;
+    }
+
+    .callout-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    /* --- STATS GRID --- */
+    .grid-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-primary);
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stat-info h4 {
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .stat-info p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* --- TABLES --- */
+    .table-container {
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background-color: rgba(255, 255, 255, 0.03);
+      color: #f1f5f9;
+      font-weight: 600;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      color: #cbd5e1;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* --- CODE & INLINE BADGES --- */
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255, 255, 255, 0.08);
+      color: #38bdf8;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-size: 0.88em;
+    }
+
+    pre {
+      font-family: 'JetBrains Mono', monospace;
+      background: #020617;
+      border: 1px solid var(--border-color);
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      color: #e2e8f0;
+      font-size: 0.88rem;
+      margin: 16px 0;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 850px) {
+      aside {
+        display: none;
+      }
+      main {
+        margin-left: 0;
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside>
+    <div class="sidebar-header">
+      <span class="logo-icon"></span>
+      <div>
+        <a href="https://tomandesmsh.github.io/Keyboard-Hero/"> <div class="title">Keyboard Hero</div> </a>
+        <span class="badge">Dokumentace</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Přehled</div>
+      <ul class="nav-list">
+        <li><a href="#uvod" class="active">O aplikaci</a></li>
+        <li><a href="#ukazatele">Odznáčky a ukazatele</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Návod pro uživatele</div>
+      <ul class="nav-list">
+        <li><a href="#prirucka-zak">Návod pro žáka</a></li>
+        <li><a href="#prirucka-admin">Návod pro učitele (Admin)</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Technická specifikace</div>
+      <ul class="nav-list">
+        <li><a href="#technologie">Architektura</a></li>
+        <li><a href="#struktura-souboru">Struktura projektu</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main>
+    <div class="doc-header">
+      <h1><a href="https://tomandesmsh.github.io/Keyboard-Hero/">Keyboard Hero</a> Dokumentace</h1>
+      <p>Kompletní technická a uživatelská dokumentace k webové aplikaci pro žáky a učitele ZUŠ Moravský Krumlov.</p>
+    </div>
+
+    <!-- SEKTOR 1: ÚVOD -->
+    <section id="uvod">
+      <h2>O aplikaci</h2>
+      <p>
+        <strong><a href="https://tomandesmsh.github.io/Keyboard-Hero/">Keyboard Hero</a></strong> je webová aplikace vyvinutá pro žáky Základní umělecké školy Moravský Krumlov. 
+        Jejím hlavním cílem je hravou a motivující formou vést děti k pravidelnému domácímu cvičení na hudební nástroj.
+      </p>
+
+      <div class="callout callout-info">
+        <span class="callout-icon"></span>
+        <div>
+          <strong>Princip fungování:</strong> Žák nahraje svá cvičení přímo v prohlížeči, buduje si cvičební řadu, sbírá hvězdy za účast na koncertě (spravuje učitel) a dostává zpětnou vazbu přímo od učitele. Učitel má samostatné rozhraní pro správu výsledků a poslech nahrávek.
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKTOR 2: ODZNÁČKY -->
+    <section id="ukazatele">
+      <h2>Odznáčky a ukazatele</h2>
+      <p>V horním panelu rozhraní žáka se zobrazují metriky jeho cvičebního pokroku:</p>
+
+      <div class="grid-stats">
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-info">
+            <h4>Denní řada (Streak)</h4>
+            <p>Počet po sobě jdoucích dní, kdy žák odeslal alespoň jedno cvičení.</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🎵</div>
+          <div class="stat-info">
+            <h4>Odesláno</h4>
+            <p>Celkový počet nahraných a úspěšně doručených nahrávek cvičení.</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-info">
+            <h4>Koncerty</h4>
+            <p>Hvězdičky udělované učitelem za výkony na koncertech.</p>
+          </div>
+        </div>
+    </section>
+
+    <!-- SEKTOR 3: PŘÍRUČKA PRO ŽÁKA -->
+    <section id="prirucka-zak">
+      <h2>Uživatelská příručka pro žáka</h2>
+      
+      <h3>1. Registrace a přihlášení</h3>
+      <ul>
+        <li><strong>Registrace:</strong> Při prvním spuštění klikněte na <code>Chci se zaregistrovat</code>, vyplňte uživatelské jméno bez diakritiky (např. <code>jannovak</code>), celé jméno a heslo.</li>
+        <li><strong>Přihlášení:</strong> Zadejte uživatelské jméno a heslo. Volba <code>Zapamatovat si mě</code> vás udrží přihlášené i po zavření prohlížeče.</li>
+      </ul>
+
+      <div class="callout callout-warning">
+        <span class="callout-icon"></span>
+        <div>
+          <strong>Důležité:</strong> Uživatelské jméno <strong>nesmí</strong> obsahovat diakritiku ani mezery, slouží totiž k vygenerování interního e-mailu (<code>jannovak@keyboardhero.internal</code>).
+        </div>
+      </div>
+
+      <h3>2. Funkce v rozhraní žáka</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Funkce</th>
+              <th>Popis a návod</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>🎙️ Nahrávání cvičení</strong></td>
+              <td>Stiskněte tlačítko s mikrofonem. Tlačítko červeně pulzuje. Po dokončení hraní opět stiskněte tlačítko – nahrávka se automaticky nahraje učiteli a tlačítko se rozsvítí zeleně.</td>
+            </tr>
+            <tr>
+              <td><strong>🎼 Měsíční kalendář</strong></td>
+              <td>Zobrazuje dny v daném měsíci. Dny, kdy bylo nahráno cvičení, jsou zvýrazněny oranžovo-červeným gradientem.</td>
+            </tr>
+            <tr>
+              <td><strong>💾 Nedávné nahrávky</strong></td>
+              <td>Přehled až 5 posledních nahrávek s možností přehrání nebo stažení do zařízení (tlačítkem 💾).</td>
+            </tr>
+            <tr>
+              <td><strong>💬 Komentáře učitele</strong></td>
+              <td>Zobrazuje zpětnou vazbu a poznámky, které vám učitel napsal k vašim nahrávkám.</td>
+            </tr>
+            <tr>
+              <td><strong>🏆 Žebříček (Top Žáci)</strong></td>
+              <td>Soutěžní tabulka nejlepších žáků seřazená podle denní řady (🔥) a počtu hvězd (⭐).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-warning">
+        <span class="callout-icon"></span>
+        <div>
+          <strong>Upozornění k nahrávkám:</strong> Starší audio soubory se z důvodu úspory místa průběžně mažou.<br> Pokud si chcete své cvičení uchovat, stáhněte si ho včas přes tlačítko 💾.
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKTOR 4: PŘÍRUČKA PRO ADMINA -->
+    <section id="prirucka-admin">
+      <h2>Uživatelská příručka pro administrátora</h2>
+      <p>Administrátorský panel slouží učitelům k poslechům nahrávek, psaní hodnocení a správě statistik žáků.</p>
+
+      <h3>Možnosti administrátora</h3>
+      <ol>
+        <li><strong>Přihlášení:</strong> Přístup přes tlačítko <code>Admin Login</code> nebo soubor <code>admin.html</code>. Nutné účty s rolí <code>admin</code>.</li>
+        <li><strong>Správa bodů a odznáčků:</strong> V přehledné tabulce žáků lze tlačítky <code>+</code> a <code>-</code> okamžitě upravit hodnoty <strong>Streak</strong> a <strong>Stars</strong>. Změny se uloží tlačítkem <code>Uložit</code>.</li>
+        <li><strong>Poslech a komentování:</strong> Po kliknutí na tlačítko <code>Nahrávky</code> u daného žáka se otevře panel se všemi jeho zvukovými záznamy. Učitel si může skladbu přehrát a napsat k ní slovní komentář.</li>
+        <li><strong>Mazání nahrávek:</strong> Tlačítko 🗑️ <code>Smazat</code> trvale odstraní nahrávku jak z databáze, tak z úložiště Supabase Storage.</li>
+      </ol>
+    </section>
+
+    <!-- SEKTOR 5: TECHNICKÁ SPECIFIKACE -->
+    <section id="technologie">
+      <h2>Architektura</h2>
+      <p>Aplikace je postavena na moderních webových standardech bez nutnosti kompilace či těžkých JavaScriptových frameworků.</p>
+
+      <h3>Použité technologie</h3>
+      <ul>
+        <li><strong>Frontend:</strong> HTML5, CSS3 (Flexbox/Grid), Vanillajs, Web Audio / MediaRecorder API.</li>
+        <li><strong>Backend & Databáze:</strong> Supabase (PostgreSQL, Authentication, Storage).</li>
+        <li><strong>Audio Formát:</strong> standardní <code>audio/wav</code> Blob streamovaný z mikrofonu zařízení.</li>
+      </ul>
+
+      <h3>Databázové tabulky (Supabase Schema)</h3>
+      <pre><code>-- Profily uživatelů
+profiles (
+  id uuid PRIMARY KEY REFERENCES auth.users,
+  username text,
+  full_name text,
+  role text DEFAULT 'student',
+  streak integer DEFAULT 0,
+  stars integer DEFAULT 0
+);
+
+-- Záznamy o cvičení
+practice_logs (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid REFERENCES profiles(id),
+  audio_url text,
+  teacher_comment text,
+  created_at timestamp with time zone DEFAULT now()
+);</code></pre>
+
+      <h3>Interní autentizační logika</h3>
+      <p>Jelikož děti v ZUŠ často nemají vlastní e-mailové adresy, aplikace automaticky převádí uživatelské jméno na vnitřní e-mailový tvar:</p>
+      <pre><code>function makeInternalEmail(username) {
+  const cleanUsername = username.trim().toLowerCase().replace(/\s+/g, '');
+  return `${cleanUsername}@keyboardhero.internal`;
+}</code></pre>
+    </section>
+
+    <!-- SEKTOR 6: STRUKTURA SOUBORŮ -->
+    <section id="struktura-souboru">
+      <h2>Struktura projektu</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Soubor</th>
+              <th>Význam a funkce</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>index.html</code></td>
+              <td>Hlavní klientská aplikace pro žáky (přihlášení, kalendář, nahrávání, žebříček).</td>
+            </tr>
+            <tr>
+              <td><code>admin.html</code></td>
+              <td>Administrátorský panel pro učitele (hodnocení, bodování, poslech).</td>
+            </tr>
+            <tr>
+              <td><code>README.md</code></td>
+              <td>Základní popis projektu a důležité pokyny pro konfiguraci.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <a href="https://tomandesmsh.github.io/Keyboard-Hero/">Keyboard Hero</a> | Tomáš Vaněk, 2026 - Vytvořeno s ♡ pro ZUŠ Moravský Krumlov
+    </footer>
+  </main>
+
+  <script>
+    // Smooth scroll active state highlight
+    const navLinks = document.querySelectorAll('.nav-list a');
+    const sections = document.querySelectorAll('section');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
